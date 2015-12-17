@@ -17,6 +17,8 @@
 // version: 0.5 - 2014-12-11
 //
 
+
+
 document.addEventListener('deviceready', function() { app.initialize() }, false);
 
 var app = {};
@@ -240,9 +242,30 @@ app.receivedMessage = function(data)
 		var message = String.fromCharCode.apply(null, new Uint8Array(data));
 
 		// Update conversation
-		app.updateConversation(message, true);
+		//app.updateConversation(message, true);
+		
+		
+		//Modificaion para la capatacion 
+		var Lat = 0;
+		var Long = 0;
+		
+		var datos = message.split(',');
+		
+		Lat = datos[0];
+		Long = datos[1];
+		
+		
+		var map = L.map('map').setView([Lat, Long], 16);	
+                    
+		L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+				attribution: '<a href="http://tecdogt.com">TecDo S.A.&reg; GT </a>',
+			maxZoom: 18					
+		}).addTo(map);
+		
+		marker = L.marker([Lat, Long]).addTo(map);
+		marker.bindPopup("Aqui estamos: ").openPopup();
 
-		console.log(message);
+		//console.log('Message received: ' + message);
 	}
 	else
 	{

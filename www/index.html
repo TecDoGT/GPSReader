@@ -12,16 +12,21 @@
 	<style>
 		@import 'ui/css/evothings-app.css';
 		@import 'app.css';
+		@import 'leaflet.css';		
 	</style>
 
-	<link rel="stylesheet" type="text/css" href="css/leaflet.css" />
+	<script>
+	// Redirect console.log to Evothings Workbench.
+	if (window.hyper && window.hyper.log) { console.log = hyper.log }
+	</script>
 
 	<script src="cordova.js"></script>
 	<script src="libs/evothings/evothings.js"></script>
 	<script src="libs/evothings/easyble/easyble.js"></script>
 	<script src="libs/jquery/jquery.js"></script>
-    <script src="libs/leaflet/leaflet.js"></script>
+    <script src="leaflet.js"></script>
 	<script src="app.js"></script>
+    
 
 </head>
 
@@ -37,11 +42,11 @@
 
 	</header>
 
-	<h1>Log GPS</h1>
+	<h1>Salsas y Chiles</h1>
 
 	<div id="startView">	
 
-		<img class="center" src="img/RedBearLab.jpg">
+		<img class="center" src="img/arduino.png">
 		<button class="red wide" onclick="app.startScan()">Scan</button>
 
 	</div>
@@ -50,8 +55,6 @@
 
 	<div id="conversationView" style="display:none">
 
-		<div id="conversation"></div>
-        
         <div id="map"></div>
 
 		<div id="conversationControl" style="width:100%">
@@ -68,6 +71,15 @@
 		</div>
 
 	</div>
+    
+    <script type="application/javascript">
+		var AltoPantalla = document.body.clientHeight;
+		var strH = (AltoPantalla - 200) + "px";
+		
+		document.getElementById("map").style.height = strH;
+		
+		
+    </script>
 
 	<div id="loadingView" style="display:none">
 
